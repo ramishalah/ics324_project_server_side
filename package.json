@@ -17,9 +17,10 @@
   "author": "Terlici Ltd.",
   "license": "MIT",
   "dependencies": {
-    "body-parser": "^1.12.3",
-    "express": "^4.12.3",
-    "jade": "^1.9.2"
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "mysql": "^2.15.0",
+    "nodemon": "^1.13.1"
   },
   "devDependencies": {
     "mocha": "^2.2.4",

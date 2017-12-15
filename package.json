@@ -1,11 +1,10 @@
 {
   "name": "Base",
   "version": "1.0.0",
-  "description": "Basic structure for Express web apps.",
+  "description": "ICS324 - project",
   "main": "app.js",
   "scripts": {
-    "start": "node app.js",
-    "test": "node_modules/.bin/mocha tests/**"
+    "start": "node app.js"
   },
   "keywords": [
     "base",
@@ -25,5 +24,8 @@
     "mocha": "^2.2.4",
     "nodemon": "^1.13.2",
     "should": "^6.0.1"
+  },
+  "engines": {
+    "node": "8.9.1"
   }
 }

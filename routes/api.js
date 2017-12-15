@@ -7,6 +7,7 @@ router.get('/hello', function(req, res, next){
     res.send("HELLO WORLD");
 });
 
+
 // // add a new ninja to the db
 // router.post('/ninjas', function(req, res, next){
 //     Ninja.create(req.body).then(function(ninja){

@@ -7,16 +7,16 @@ const mysql = require('mysql');
 var con = mysql.createPool({
   connectionLimit : 10,
   host: "us-cdbr-iron-east-05.cleardb.net",
-  user: "b80bbc009ec33c",
-  password: "98f73cf6",
-  database: "heroku_ec70ce51f8640f0"
+  user: "b5654c20bfc08d",
+  password: "494c90c0",
+  database: "heroku_1c981effd06b6ae"
 });
 
 
 express()
   .use(bodyParser.json())
   .get('/hello', function(req, res, next){
-      var sql = "SELECT * FROM temp";
+      var sql = "SELECT * FROM student";
       con.query(sql, function (err, rows, fields) {
         if (err) throw err;
         res.send(rows);

@@ -1,12 +1,11 @@
 const express = require ('express');
 const router = express.Router();
-// const db = require('../models/db');
+// const Ninja = require('../models/ninja');
 
 // get a list of ninjas from the db
 router.get('/hello', function(req, res, next){
-    res.send("HELLO WORLD");
+    res.send("hello world")
 });
-
 
 // // add a new ninja to the db
 // router.post('/ninjas', function(req, res, next){

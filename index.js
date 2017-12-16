@@ -15,7 +15,7 @@ var con = mysql.createPool({
 
 express()
   .use(bodyParser.json())
-  .get('/hello', function(req, res, next){
+  .get('/students', function(req, res, next){
       var sql = "SELECT * FROM student";
       con.query(sql, function (err, rows, fields) {
         if (err) throw err;

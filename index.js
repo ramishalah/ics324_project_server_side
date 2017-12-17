@@ -88,6 +88,15 @@ express()
     });
   })
 
+  // req1
+  .get('/:CourseCode/:FirstTerm/:SecondTerm', function(req, res, next){
+    var sql = "SELECT FirstName, Lname FROM section Where CourseCode= ${req.params.CourseCode} AND Term >= ${req.params.FirstTerm} AND Term <= ${req.params.SecondTerm}"
+    con.query(sql, function (err, rows, fields) {
+      if (err) throw err;
+      res.send(rows);
+    });
+  })
+
 
 
 

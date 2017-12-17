@@ -26,9 +26,9 @@ express()
       if (err) throw err;
       res.send(rows);
     });
-
   })
 
+  // for retrieving all sections
   .get('/sections', function(req, res, next){
 
     var sql = "SELECT * FROM section"
@@ -36,8 +36,56 @@ express()
       if (err) throw err;
       res.send(rows);
     });
-      
+  })  
 
+  // for retrieving all courses
+  .get('/courses', function(req, res, next){
+
+    var sql = "SELECT * FROM course"
+    con.query(sql, function (err, rows, fields) {
+      if (err) throw err;
+      res.send(rows);
+    });
+  })
+
+  // for retrieving all instructors
+  .get('/instructors', function(req, res, next){
+
+    var sql = "SELECT * FROM instructor"
+    con.query(sql, function (err, rows, fields) {
+      if (err) throw err;
+      res.send(rows);
+    });
+  })
+
+  // for retrieving all prerequisite
+  .get('/prerequisites', function(req, res, next){
+
+    var sql = "SELECT * FROM prerequisite"
+    con.query(sql, function (err, rows, fields) {
+      if (err) throw err;
+      res.send(rows);
+    });
+  })
+
+  // for retrieving all preferences
+  .get('/preferences', function(req, res, next){
+
+    var sql = "SELECT * FROM preference"
+    con.query(sql, function (err, rows, fields) {
+      if (err) throw err;
+      res.send(rows);
+    });
+  })
+
+  // for retrieving all enrollments
+  .get('/enrollments', function(req, res, next){
+
+    var sql = "SELECT * FROM enrollment"
+    con.query(sql, function (err, rows, fields) {
+      if (err) throw err;
+      res.send(rows);
+    });
   })
 
 

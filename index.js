@@ -71,7 +71,7 @@ express()
   // for retrieving all preferences
   .get('/preferences', function(req, res, next){
 
-    var sql = "SELECT * FROM preference"
+    var sql = "SELECT * FROM preferences"
     con.query(sql, function (err, rows, fields) {
       if (err) throw err;
       res.send(rows);

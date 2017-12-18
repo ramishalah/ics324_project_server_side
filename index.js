@@ -109,6 +109,71 @@ express()
     });
   })
 
+  // for retrieving the students who eligible to take a specific course
+  .get('/:CourseCode', function(req, res, next){
+
+    var prerequisiteSql = `select p.PreCourseCode
+    from course c join prerequisite p
+    on c.CourseCode = p.CourseCode
+    where c.CourseCode = '${req.params.CourseCode}'`;
+    
+    console.log(sql);
+    var prerequisite = [];
+    con.query(prerequisiteSql, function (err, rows, fields) {
+      if (err) throw err;
+      prerequisite = rows;
+      res.send(prerequisite);
+    });
+
+    var studentWithCoursesSql = `select s.StuID, s.Fname, s.Lname, se.CourseCode
+    from student s
+    join enrollment e
+    on s.StuID = e.StuID
+    join section se
+    on e.CRN = se.CRN`;
+
+    var studentsWithCourses = [];
+    con.query(studentWithCoursesSql, function (err, rows, fields) {
+      if (err) throw err;
+      studentsWithCourses = rows;
+    });
+
+    // var eachStudentWithCourses = [];
+    // var coursesArray = []
+    // for(i = 0; i < studentsWithCourses.length; i++) {
+    //   var studentID1 = studentsWithCourses[i].StuID;
+    //   var studentID2;
+    //   if(studentsWithCourses[i + 1] != null)
+    //     studentID2 = studentsWithCourses[i + 1].StuID;
+
+    //   coursesArray.push(studentsWithCourses.CourseCode);
+      
+    //   if(studentID1 != studentID2) {
+    //     var studentHasCourses = {
+    //       studentID1: coursesArray
+    //     }
+    //     coursesArray = [];
+    //     eachStudentWithCourses.push(studentHasCourses);
+
+    //   }
+    // }
+
+    // var students = [];
+    // for(i = 0; i < prerequisite.length; i++) {
+    //   var preCourseCode = prerequisite[i].CourseCode;
+    //   for(j = 0; j < eachStudentWithCourses.length; j++){
+    //     var studentId = eachStudentWithCourses[j];
+    //     for(k = 0; k < eachStudentWithCourses.studentID1.length; k++) {
+    //       if(eachStudentWithCourses.studentID1[k].CourseCode == preCourseCode)
+    //         students.push({StuID: studentId});
+    //     }
+    //   }
+    // }
+
+
+
+  })
+
   // for retrieving the id's and the names for all instructors who can teach a specific course
   .get('/instructors/:CourseCode', function(req, res, next){
     var sql = `select i.InstructorID, FirstName, Lname

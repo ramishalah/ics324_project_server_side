@@ -136,9 +136,31 @@ express()
     con.query(studentWithCoursesSql, function (err, rows, fields) {
       if (err) throw err;
       studentsWithCourses = rows;
-      res.send(studentsWithCourses);
-      res.send(prerequisite);
     });
+
+    var students = [];
+
+    var prerequisiteCourseCode = prerequisite[0].PreCourseCode;
+
+    for(j = 0; j < studentsWithCourses.length; j++) {
+
+      var CourseCode = studentsWithCourses[j].CourseCode;
+      // var studentID1 = studentsWithCourses[j].StuID;
+      // var studentID2;
+      // if(studentsWithCourses[i + 1] != null)
+      //   studentID2 = studentsWithCourses[j + 1].StuID;
+
+      if(CourseCode == prerequisiteCourseCode) {
+        students.push(
+          {
+            StudID: studentsWithCourses[j].StuID,
+            Fname: studentsWithCourses[j].Fname,
+            Lname: studentsWithCourses[j].Lname
+          }
+        )
+      } 
+    }
+    res.send(students);
 
     // var eachStudentWithCourses = [];
     // var coursesArray = []
@@ -166,8 +188,11 @@ express()
     //   for(j = 0; j < eachStudentWithCourses.length; j++){
     //     var studentId = eachStudentWithCourses[j];
     //     for(k = 0; k < eachStudentWithCourses.studentID1.length; k++) {
-    //       if(eachStudentWithCourses.studentID1[k].CourseCode == preCourseCode)
-    //         students.push({StuID: studentId});
+    //       if(eachStudentWithCourses.studentID1[k] == preCourseCode)
+    //         students.push({
+    //           StuID: studentId,
+
+    //         });
     //     }
     //   }
     // }

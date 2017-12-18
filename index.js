@@ -89,7 +89,7 @@ express()
   })
 
   // for retrieving the instructors between two terms giving a course code
-  .get('instructors/:CourseCode/:FirstTerm/:SecondTerm', function(req, res, next){
+  .get('/instructors/:CourseCode/:FirstTerm/:SecondTerm', function(req, res, next){
     var sql = `SELECT FirstName, Lname FROM section s join instructor i on s.InstructorID = i.InstructorID Where CourseCode= '${req.params.CourseCode}' AND Term >= ${req.params.FirstTerm} AND Term <= ${req.params.SecondTerm}`
     console.log(sql);
     con.query(sql, function (err, rows, fields) {
@@ -99,7 +99,7 @@ express()
   })
 
   // for retrieving the courses between two terms giving an instructor id.
-  .get('courses/:InstructorID/:FirstTerm/:SecondTerm', function(req, res, next){
+  .get('/courses/:InstructorID/:FirstTerm/:SecondTerm', function(req, res, next){
     var sql = `SELECT c.CourseCode, c.CourseName FROM section s join course c on s.CourseCode = c.CourseCode Where InstructorID= ${req.params.InstructorID} AND Term >= ${req.params.FirstTerm} AND Term <= ${req.params.SecondTerm}`
     console.log(sql);
     con.query(sql, function (err, rows, fields) {

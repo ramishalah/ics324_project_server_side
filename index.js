@@ -116,6 +116,8 @@ express()
 
     var prerequisite = [];
     var studentsWithCourses = [];
+    // var allStudents = [];
+    
 
     var prerequisiteSql = `select p.PreCourseCode
     from course c join prerequisite p
@@ -141,32 +143,29 @@ express()
         studentsWithCourses = rows;
         console.log(studentsWithCourses)
 
-        var students = [];
-        for(j = 0; j < studentsWithCourses.length; j++) {
+        var sql = "SELECT * FROM student";
+        con.query(sql, function (err, rows, fields) {
+          if (err) throw err;
+          // allStudents = rows;
+          var students = [];
+          for(j = 0; j < studentsWithCourses.length; j++) {
 
-          if(prerequisite.length == 0) {
-            // There is a bug here!
-            students.push(
-              {
-                StudID: studentsWithCourses[j].StuID,
-                Fname: studentsWithCourses[j].Fname,
-                Lname: studentsWithCourses[j].Lname
-              }
-            )
-          } else if(studentsWithCourses[j].CourseCode == prerequisite[0].PreCourseCode && prerequisite.length != 0) {
-            students.push(
-              {
-                StudID: studentsWithCourses[j].StuID,
-                Fname: studentsWithCourses[j].Fname,
-                Lname: studentsWithCourses[j].Lname
-              }
-            )
+            if(prerequisite.length == 0) {
+              students = rows;
+              break;
+            } else if(studentsWithCourses[j].CourseCode == prerequisite[0].PreCourseCode && prerequisite.length != 0) {
+              students.push(
+                {
+                  StudID: studentsWithCourses[j].StuID,
+                  Fname: studentsWithCourses[j].Fname,
+                  Lname: studentsWithCourses[j].Lname
+                }
+              )
+            }
           }
-        }
-        res.send(students);
-        
+          res.send(students);
+        });
       });
-
     });
   })
 

@@ -122,7 +122,7 @@ express()
     con.query(prerequisiteSql, function (err, rows, fields) {
       if (err) throw err;
       prerequisite = rows;
-      
+      res.send(prerequisite);
     });
 
     var studentWithCoursesSql = `select s.StuID, s.Fname, s.Lname, se.CourseCode

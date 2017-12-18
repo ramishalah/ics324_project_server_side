@@ -116,8 +116,8 @@ express()
     from course c join prerequisite p
     on c.CourseCode = p.CourseCode
     where c.CourseCode = '${req.params.CourseCode}'`;
+
     
-    console.log(sql);
     var prerequisite = [];
     con.query(prerequisiteSql, function (err, rows, fields) {
       if (err) throw err;

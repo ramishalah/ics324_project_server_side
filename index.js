@@ -117,12 +117,12 @@ express()
     on c.CourseCode = p.CourseCode
     where c.CourseCode = '${req.params.CourseCode}'`;
 
-    
+
     var prerequisite = [];
     con.query(prerequisiteSql, function (err, rows, fields) {
       if (err) throw err;
       prerequisite = rows;
-      res.send(prerequisite);
+      
     });
 
     var studentWithCoursesSql = `select s.StuID, s.Fname, s.Lname, se.CourseCode
@@ -136,6 +136,8 @@ express()
     con.query(studentWithCoursesSql, function (err, rows, fields) {
       if (err) throw err;
       studentsWithCourses = rows;
+      res.send(studentsWithCourses);
+      res.send(prerequisite);
     });
 
     // var eachStudentWithCourses = [];

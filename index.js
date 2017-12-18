@@ -98,9 +98,24 @@ express()
     });
   })
 
-  // for retrieving the courses between two terms giving an instructor id.
+  // for retrieving the courses between two terms giving an instructor id
   .get('/courses/:InstructorID/:FirstTerm/:SecondTerm', function(req, res, next){
     var sql = `SELECT c.CourseCode, c.CourseName FROM section s join course c on s.CourseCode = c.CourseCode Where InstructorID= ${req.params.InstructorID} AND Term >= ${req.params.FirstTerm} AND Term <= ${req.params.SecondTerm}`
+    
+    console.log(sql);
+    con.query(sql, function (err, rows, fields) {
+      if (err) throw err;
+      res.send(rows);
+    });
+  })
+
+  // for retrieving the id's and the names for all instructors who can teach a specific course
+  .get('/instructors/:CourseCode', function(req, res, next){
+    var sql = `select i.InstructorID, FirstName, Lname
+    from instructor i join preferences p
+    on i.InstructorID = p.InstructorID
+    where (p.Status = 'inreview' or p.status = 'accepted') and p.CourseCode = '${req.params.CourseCode}'`;
+
     console.log(sql);
     con.query(sql, function (err, rows, fields) {
       if (err) throw err;

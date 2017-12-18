@@ -138,29 +138,29 @@ express()
       studentsWithCourses = rows;
     });
 
-    var students = [];
+    // var students = [];
 
-    var prerequisiteCourseCode = prerequisite[0].PreCourseCode;
+    // var prerequisiteCourseCode = prerequisite[0].PreCourseCode;
 
-    for(j = 0; j < studentsWithCourses.length; j++) {
+    // for(j = 0; j < studentsWithCourses.length; j++) {
 
-      var CourseCode = studentsWithCourses[j].CourseCode;
-      // var studentID1 = studentsWithCourses[j].StuID;
-      // var studentID2;
-      // if(studentsWithCourses[i + 1] != null)
-      //   studentID2 = studentsWithCourses[j + 1].StuID;
+    //   var CourseCode = studentsWithCourses[j].CourseCode;
+    //   // var studentID1 = studentsWithCourses[j].StuID;
+    //   // var studentID2;
+    //   // if(studentsWithCourses[i + 1] != null)
+    //   //   studentID2 = studentsWithCourses[j + 1].StuID;
 
-      if(CourseCode == prerequisiteCourseCode) {
-        students.push(
-          {
-            StudID: studentsWithCourses[j].StuID,
-            Fname: studentsWithCourses[j].Fname,
-            Lname: studentsWithCourses[j].Lname
-          }
-        )
-      } 
-    }
-    res.send(students);
+    //   if(CourseCode == prerequisiteCourseCode) {
+    //     students.push(
+    //       {
+    //         StudID: studentsWithCourses[j].StuID,
+    //         Fname: studentsWithCourses[j].Fname,
+    //         Lname: studentsWithCourses[j].Lname
+    //       }
+    //     )
+    //   } 
+    // }
+    // res.send(students);
 
     // var eachStudentWithCourses = [];
     // var coursesArray = []

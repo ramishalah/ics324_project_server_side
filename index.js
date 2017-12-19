@@ -192,7 +192,16 @@ express()
     });
   })
 
+  .patch('/editpreference', function(req, res, next){
+    var instructorId = req.body.InstructorID;
+    var courseCode = req.body.CourseCode;
+    var status = req.body.Status;
 
-
+    var sql = `update preferences set Status = '${status}' where InstructorID = ${instructorId} AND CourseCode = '${courseCode}'`;
+    con.query(sql, function (err, rows, fields) {
+      if (err) throw err;
+      res.send(req.body);
+    });
+  })
 
   .listen(PORT, () => console.log(`Listening on ${ PORT }`))

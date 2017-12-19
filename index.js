@@ -204,4 +204,13 @@ express()
     });
   })
 
+  .delete('/deletepreferences', function(req, res, next){
+
+    var sql = "TRUNCATE preferences";
+    con.query(sql, function (err, rows, fields) {
+      if (err) throw err;
+      res.send("Deleted!");
+    });
+  })
+
   .listen(PORT, () => console.log(`Listening on ${ PORT }`))

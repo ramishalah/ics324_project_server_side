@@ -17,7 +17,6 @@ var con = mysql.createPool({
 express()
   // to parse the request body
   .use(bodyParser.json())
-  .use(bodyParser.urlencoded({ extended: true }))
 
   // for retrieving all the students
   .get('/students', function(req, res, next){
@@ -186,10 +185,10 @@ express()
     var instructorId = req.body.InstructorID;
     var courseCode = req.body.CourseCode;
 
-    var sql = `insert into preferences values(${courseCode}, ${instructorId}, 'inreview')`;
+    var sql = `insert into preferences values('${courseCode}', ${instructorId}, 'inreview')`;
     con.query(sql, function (err, rows, fields) {
       if (err) throw err;
-      res.send(`done with adding: ${courseCode} ${instructorId} 'inreview'`);
+      res.send(req.body);
     });
   })
 

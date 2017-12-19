@@ -17,6 +17,7 @@ var con = mysql.createPool({
 express()
   // to parse the request body
   .use(bodyParser.json())
+  .use(bodyParser.urlencoded({ extended: true }))
 
   // for retrieving all the students
   .get('/students', function(req, res, next){
@@ -116,7 +117,6 @@ express()
 
     var prerequisite = [];
     var studentsWithCourses = [];
-    // var allStudents = [];
     
 
     var prerequisiteSql = `select p.PreCourseCode
@@ -146,7 +146,6 @@ express()
         var sql = "SELECT * FROM student";
         con.query(sql, function (err, rows, fields) {
           if (err) throw err;
-          // allStudents = rows;
           var students = [];
           for(j = 0; j < studentsWithCourses.length; j++) {
 
@@ -180,6 +179,17 @@ express()
     con.query(sql, function (err, rows, fields) {
       if (err) throw err;
       res.send(rows);
+    });
+  })
+
+  .post('/addpreference', function(req, res, next){
+    var instructorId = req.body.InstructorID;
+    var courseCode = req.body.CourseCode;
+
+    var sql = `insert into preferences values(${courseCode}, ${instructorId}, 'inreview')`;
+    con.query(sql, function (err, rows, fields) {
+      if (err) throw err;
+      res.send(`done with adding: ${courseCode} ${instructorId} 'inreview'`);
     });
   })
 

@@ -203,7 +203,7 @@ express()
       res.send(req.body);
     });
   })
-
+  // to delete all the preferences table
   .delete('/deletepreferences', function(req, res, next){
 
     var sql = "TRUNCATE preferences";

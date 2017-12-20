@@ -188,10 +188,11 @@ express()
     var sql = `insert into preferences values('${courseCode}', ${instructorId}, 'inreview')`;
     con.query(sql, function (err, rows, fields) {
       if (err){
-        console.error(err.stack);
         res.status(400).send("Duplicate InstructorID and CourseCode");
-      } 
-      res.send(req.body);
+      } else {
+        res.send(req.body);
+      }
+      
     });
   })
 

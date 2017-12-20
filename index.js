@@ -188,7 +188,10 @@ express()
     var sql = `insert into preferences values('${courseCode}', ${instructorId}, 'inreview')`;
     con.query(sql, function (err, rows, fields) {
       if (err){
-        res.status(400).send("Duplicate InstructorID and CourseCode");
+        if(err.code == "ER_DUP_ENTRY")
+          res.status(400).send("Duplicate InstructorID and CourseCode");
+        else if(err.code == "ER_NO_REFERENCED_ROW_2")  
+          res.status(400).send("InstructorID or course code does not exist");
       } else {
         res.send(req.body);
       }

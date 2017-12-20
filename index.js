@@ -192,7 +192,7 @@ express()
     });
   })
 
-  .patch('/editpreference', function(req, res, next){
+  .put('/editpreference', function(req, res, next){
     var instructorId = req.body.InstructorID;
     var courseCode = req.body.CourseCode;
     var status = req.body.Status;

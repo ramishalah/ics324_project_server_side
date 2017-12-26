@@ -193,7 +193,7 @@ express()
         else if(err.code == "ER_NO_REFERENCED_ROW_2")  
           res.status(400).send("InstructorID or course code does not exist");
         else
-          res.status(400).send("حاج تبعبصوا");
+          res.status(400).send("JSON format is not correct");
       } else {
         res.send(req.body);
       }
@@ -209,7 +209,7 @@ express()
     var sql = `update preferences set Status = '${status}' where InstructorID = ${instructorId} AND CourseCode = '${courseCode}'`;
     con.query(sql, function (err, rows, fields) {
       if (err) 
-        res.status(400).send("حاج تبعبصوا");
+        res.status(400).send("JSON format is not correct");
       else  
         res.send(req.body);
     });

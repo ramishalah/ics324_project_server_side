@@ -172,7 +172,7 @@ express()
     var sql = `select i.InstructorID, FirstName, Lname
     from instructor i join preferences p
     on i.InstructorID = p.InstructorID
-    where (p.Status = 'inreview' or p.status = 'approved') and p.CourseCode = '${req.params.CourseCode}'`;
+    where (p.status = 'approved') and p.CourseCode = '${req.params.CourseCode}'`;
 
     console.log(sql);
     con.query(sql, function (err, rows, fields) {

@@ -154,7 +154,7 @@ express()
             } else if(studentsWithCourses[j].CourseCode == prerequisite[0].PreCourseCode && prerequisite.length != 0) {
               students.push(
                 {
-                  StudID: studentsWithCourses[j].StuID,
+                  StuID: studentsWithCourses[j].StuID,
                   Fname: studentsWithCourses[j].Fname,
                   Lname: studentsWithCourses[j].Lname
                 }
